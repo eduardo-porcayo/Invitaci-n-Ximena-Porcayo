@@ -1,0 +1,797 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#fff5f8">
+  <title>Baby Shower de Ximena</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --rosa: #f6c5d5;
+      --rosa-claro: #fff0f5;
+      --rosa-fuerte: #d986a5;
+      --dorado: #d5b16c;
+      --texto: #765565;
+      --blanco: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      min-height: 100%;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: 'Montserrat', sans-serif;
+      color: var(--texto);
+      background:
+        radial-gradient(circle at top left, #fff 0%, transparent 38%),
+        linear-gradient(135deg, #fff8fa, #fceaf1, #fff9f4);
+      overflow-x: hidden;
+    }
+
+    /* ===== INVITACIÓN ===== */
+
+    .invitation {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 30px 15px;
+    }
+
+    .card {
+      position: relative;
+      width: 100%;
+      max-width: 510px;
+      padding: 45px 28px 38px;
+      text-align: center;
+      background: rgba(255, 255, 255, 0.91);
+      border: 1px solid rgba(213, 177, 108, 0.75);
+      border-radius: 230px 230px 25px 25px;
+      box-shadow: 0 15px 45px rgba(174, 115, 140, 0.16);
+      overflow: hidden;
+      animation: aparecerTarjeta 1.4s ease both;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 10px;
+      border: 1px solid rgba(213, 177, 108, 0.42);
+      border-radius: 220px 220px 19px 19px;
+      pointer-events: none;
+    }
+
+    .decor-top {
+      position: relative;
+      font-size: 27px;
+      letter-spacing: 8px;
+      color: var(--dorado);
+      margin-bottom: 10px;
+    }
+
+    .eyebrow {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      margin: 12px 0;
+      color: #bd8a9e;
+    }
+
+    h1 {
+      position: relative;
+      margin: 8px 0 0;
+      font-family: 'Great Vibes', cursive;
+      font-size: clamp(57px, 14vw, 82px);
+      line-height: 1.15;
+      font-weight: 400;
+      color: #d58eaa;
+    }
+
+    .baby-shower {
+      margin: 0 0 23px;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: #b99a6a;
+    }
+
+    .divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin: 19px auto;
+      color: var(--dorado);
+    }
+
+    .divider::before,
+    .divider::after {
+      content: "";
+      width: 52px;
+      height: 1px;
+      background: var(--dorado);
+    }
+
+    .message {
+      font-size: 13px;
+      line-height: 1.9;
+      max-width: 350px;
+      margin: 0 auto 12px;
+    }
+
+    .highlight {
+      font-family: 'Great Vibes', cursive;
+      font-size: 39px;
+      color: #d58eaa;
+      margin: 10px 0;
+    }
+
+    /* ===== RECUADROS DE INFORMACIÓN ===== */
+
+    .details {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      width: 100%;
+      max-width: 360px;
+      margin: 25px auto;
+      padding: 0;
+      border: none;
+    }
+
+    .detail-item {
+      margin: 0;
+      padding: 17px 10px;
+      min-width: 0;
+      background: linear-gradient(145deg, #fffdfd, #fff5f8);
+      border: 1px solid #e8d2b0;
+      border-radius: 13px;
+      box-shadow: 0 4px 12px rgba(174, 115, 140, 0.08);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .detail-item:last-child {
+      grid-column: 1 / -1;
+    }
+
+    .detail-label {
+      margin-bottom: 9px;
+      color: #b99a6a;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .detail-value {
+      color: #765565;
+      font-size: 12px;
+      line-height: 1.8;
+      font-weight: 500;
+      overflow-wrap: anywhere;
+    }
+
+    .closing {
+      font-size: 12px;
+      line-height: 1.8;
+      margin: 20px auto 0;
+    }
+
+    .heart {
+      display: inline-block;
+      color: #e4a0b7;
+      animation: latido 1.5s ease-in-out infinite;
+    }
+
+    .flowers {
+      position: absolute;
+      font-size: 25px;
+      opacity: 0.75;
+      pointer-events: none;
+    }
+
+    .flowers.left {
+      top: 135px;
+      left: 18px;
+      transform: rotate(-20deg);
+    }
+
+    .flowers.right {
+      top: 135px;
+      right: 18px;
+      transform: rotate(20deg);
+    }
+
+    /* ===== PANTALLA DEL REGALO ===== */
+
+    .gift-screen {
+      position: fixed;
+      z-index: 10;
+      inset: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 50% 40%, rgba(255,255,255,.98), transparent 45%),
+        linear-gradient(145deg, #fff7fa, #f9e2eb, #fff7f0);
+      opacity: 1;
+      visibility: visible;
+      transition:
+        opacity 1.2s ease,
+        visibility 1.2s ease;
+      animation: respaldoRegalo 1s ease 8s forwards;
+    }
+
+    .gift-screen.hide {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .gift-content {
+      position: relative;
+      z-index: 11;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .gift-title {
+      margin: 0 0 14px;
+      font-family: 'Great Vibes', cursive;
+      font-size: clamp(38px, 9vw, 55px);
+      font-weight: 400;
+      color: #d58eaa;
+      animation: flotar 2.8s ease-in-out infinite;
+    }
+
+    .gift-subtitle {
+      margin: 0 0 30px;
+      font-size: 10px;
+      line-height: 1.8;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #a98491;
+    }
+
+    .gift {
+      position: relative;
+      width: 160px;
+      height: 155px;
+      margin-top: 35px;
+      animation: flotar 2.8s ease-in-out infinite;
+    }
+
+    .gift-box {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 160px;
+      height: 105px;
+      border: 1px solid #e0a6bc;
+      border-radius: 4px;
+      background: linear-gradient(135deg, #f9d5e1, #eeb4ca);
+      box-shadow: 0 16px 26px rgba(182, 116, 144, 0.18);
+    }
+
+    .gift-box::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 66px;
+      width: 27px;
+      background: linear-gradient(90deg, #d7b36e, #f4dfad, #d7b36e);
+    }
+
+    .gift-box::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      height: 15px;
+      background: rgba(255, 255, 255, 0.18);
+    }
+
+    .gift-lid {
+      position: absolute;
+      z-index: 2;
+      left: -8px;
+      top: 18px;
+      width: 176px;
+      height: 28px;
+      border: 1px solid #dfa2b8;
+      border-radius: 4px;
+      background: linear-gradient(135deg, #fce1e9, #edb4c8);
+      transform-origin: 15% 100%;
+      animation: abrirTapa 1.2s ease-in-out 0.7s forwards;
+    }
+
+    .gift-lid::before {
+      content: "";
+      position: absolute;
+      left: 73px;
+      top: 0;
+      bottom: 0;
+      width: 27px;
+      background: linear-gradient(90deg, #d7b36e, #f4dfad, #d7b36e);
+    }
+
+    .bow {
+      position: absolute;
+      z-index: 4;
+      top: -13px;
+      left: 63px;
+      width: 34px;
+      height: 26px;
+    }
+
+    .bow::before,
+    .bow::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      width: 20px;
+      height: 17px;
+      border: 4px solid #d7b36e;
+      border-radius: 80% 80% 15% 80%;
+    }
+
+    .bow::before {
+      left: -7px;
+      transform: rotate(25deg);
+    }
+
+    .bow::after {
+      right: -7px;
+      transform: scaleX(-1) rotate(25deg);
+    }
+
+    .gift-ribbon {
+      position: absolute;
+      z-index: 3;
+      bottom: 0;
+      left: 66px;
+      width: 27px;
+      height: 105px;
+      background: linear-gradient(90deg, #d7b36e, #f4dfad, #d7b36e);
+      pointer-events: none;
+    }
+
+    .gift-caption {
+      margin-top: 24px;
+      font-size: 11px;
+      letter-spacing: 2px;
+      color: #b18b9a;
+    }
+
+    /* ===== GLOBOS PASTEL ===== */
+
+    .balloon {
+      position: fixed;
+      z-index: 12;
+      left: calc(50% + var(--spread, 0px));
+      bottom: 35%;
+      width: var(--balloon-width, 44px);
+      height: var(--balloon-height, 58px);
+      border-radius: 50% 50% 46% 46%;
+      background:
+        radial-gradient(ellipse at 28% 23%,
+          rgba(255,255,255,.8) 0%,
+          rgba(255,255,255,.24) 15%,
+          transparent 38%),
+        var(--balloon-color, #f5c7d7);
+      box-shadow:
+        inset -7px -8px 12px rgba(130, 87, 105, 0.08),
+        0 4px 10px rgba(130, 87, 105, 0.06);
+      opacity: 0;
+      pointer-events: none;
+      transform: translateX(-50%) scale(.45) rotate(var(--tilt, 0deg));
+      animation: salirGlobo var(--duration, 4.8s) ease-out var(--delay, 0s) forwards;
+    }
+
+    .balloon::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: -5px;
+      width: 9px;
+      height: 8px;
+      background: var(--balloon-color, #f5c7d7);
+      clip-path: polygon(0 0, 100% 0, 50% 100%);
+      transform: translateX(-50%); 
+
+    }
+
+    .balloon::after {
+      content: "";
+      position: absolute;
+      top: calc(100% + 3px);
+      left: 50%;
+      width: 1px;
+      height: var(--string-height, 65px);
+      background: rgba(160, 127, 142, 0.55);
+      transform: translateX(-50%);
+      transform-origin: top;
+    }
+
+    .sparkle {
+      position: fixed;
+      z-index: 2;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: #e7c77e;
+      box-shadow: 0 0 9px rgba(231, 199, 126, 0.9);
+      pointer-events: none;
+      animation: brillar var(--sparkle-duration, 2s) ease-in-out infinite;
+    }
+
+    /* ===== ANIMACIONES ===== */
+
+    @keyframes abrirTapa {
+      0% {
+        transform: translate(0, 0) rotate(0);
+      }
+      100% {
+        transform: translate(-28px, -65px) rotate(-27deg);
+      }
+    }
+
+    @keyframes salirGlobo {
+      0% {
+        opacity: 0;
+        bottom: 35%;
+        transform: translateX(-50%) scale(.35) rotate(var(--tilt, 0deg));
+      }
+      12% {
+        opacity: .96;
+        transform: translateX(-50%) scale(1) rotate(var(--tilt, 0deg));
+      }
+      70% {
+        opacity: .95;
+      }
+      100% {
+        opacity: 0;
+        bottom: 112%;
+        transform: translateX(calc(-50% + var(--drift, 20px))) scale(1.04) rotate(var(--tilt, 0deg));
+      }
+    }
+
+    @keyframes flotar {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-8px);
+      }
+    }
+
+    @keyframes latido {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.18);
+      }
+    }
+
+    @keyframes aparecerTarjeta {
+      from {
+        opacity: 0;
+        transform: translateY(15px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes brillar {
+      0%, 100% {
+        opacity: .25;
+        transform: scale(.6);
+      }
+      50% {
+        opacity: 1;
+        transform: scale(1.4);
+      }
+    }
+
+    @keyframes respaldoRegalo {
+      to {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .card {
+        padding: 43px 22px 32px;
+      }
+
+      .flowers.left {
+        left: 9px;
+      }
+
+      .flowers.right {
+        right: 9px;
+      }
+
+      .message {
+        font-size: 12px;
+      }
+
+      .balloon {
+        max-width: 39px;
+      }
+    }
+
+    @media (max-width: 360px) {
+      .details {
+        gap: 8px;
+      }
+
+      .detail-item {
+        padding: 14px 7px;
+      }
+
+      .detail-value {
+        font-size: 11px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .heart,
+      .gift,
+      .gift-title {
+        animation-duration: 5s;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- INVITACIÓN -->
+
+  <main class="invitation">
+    <section class="card">
+
+      <div class="decor-top">✧ ♡ ✧</div>
+
+      <p class="eyebrow">Con mucho amor te invitamos al</p>
+      
+          <p class="baby-shower">Baby Shower de </p>
+
+      <h1>Ximena Porcayo Lopez</h1>
+
+  
+
+      <div class="flowers left">🌸</div>
+      <div class="flowers right">🌸</div>
+
+      <div class="divider">♡</div>
+
+      <p class="message">
+        Una pequeña bendición viene en camino
+        y queremos compartir contigo la alegría
+        de celebrar su próxima llegada.
+      </p>
+
+      <p class="highlight">¡Acompáñanos!</p>
+
+      <!-- FECHA, HORA Y LUGAR EN RECUADROS -->
+
+      <div class="details">
+
+        <div class="detail-item">
+          <div class="detail-label">Fecha</div>
+          <div class="detail-value">
+            Sábado<br>
+            17 de octubre de 2026
+          </div>
+        </div>
+
+        <div class="detail-item">
+          <div class="detail-label">Hora</div>
+          <div class="detail-value">
+            5:00 p. m.
+          </div>
+        </div>
+
+        <div class="detail-item">
+          <div class="detail-label">Lugar</div>
+          <div class="detail-value">
+            Prolongación Leyva número 730<br>
+            Colonia Centro<br>
+            Jojutla, Morelos
+          </div>
+        </div>
+
+      </div>
+     
+        
+        
+      <p class="closing">
+        Tu presencia hará este momento<br>
+        todavía más especial.
+        <br>
+        <span class="heart">♡</span>
+      </p>
+
+      <div class="divider">✧  No Faltes  ✧ </div>
+
+    </section>
+  </main>
+
+  <!-- PANTALLA INICIAL CON REGALO -->
+
+  <div class="gift-screen" id="giftScreen">
+
+    <div class="gift-content">
+
+      <h2 class="gift-title">¡Una sorpresa especial!</h2>
+
+      <p class="gift-subtitle">
+        Tenemos algo bonito que compartir contigo
+      </p>
+
+      <div class="gift" id="gift">
+        <div class="gift-box"></div>
+        <div class="gift-ribbon"></div>
+        <div class="gift-lid"></div>
+        <div class="bow"></div>
+      </div>
+
+      <p class="gift-caption">
+         ♡
+      </p>
+
+    </div>
+
+  </div>
+
+  <script>
+    (() => {
+      "use strict";
+
+      const coloresPastel = [
+        "#f6c5d5",
+        "#f9dce5",
+        "#e5d7f6",
+        "#d8e9fa",
+        "#d9efdf",
+        "#f8e7b9",
+        "#f6d6c4",
+        "#f2d8ed"
+      ];
+
+      let animacionIniciada = false;
+
+      function crearDestellos() {
+        for (let i = 0; i < 32; i++) {
+          const destello = document.createElement("span");
+
+          destello.className = "sparkle";
+          destello.style.left = (Math.random() * 100) + "vw";
+          destello.style.top = (Math.random() * 100) + "vh";
+          destello.style.animationDelay = (Math.random() * 3) + "s";
+          destello.style.setProperty(
+            "--sparkle-duration",
+            (1.5 + Math.random() * 2.5) + "s"
+          );
+
+          document.body.appendChild(destello);
+        }
+      }
+
+      function lanzarGlobos() {
+        const cantidad = 28;
+
+        for (let i = 0; i < cantidad; i++) {
+          const globo = document.createElement("span");
+          const color = coloresPastel[
+            Math.floor(Math.random() * coloresPastel.length)
+          ];
+
+          const ancho = 34 + Math.random() * 20;
+          const alto = ancho * (1.25 + Math.random() * 0.12);
+          const dispersion =
+            (Math.random() - 0.5) * window.innerWidth * 0.8;
+          const retraso = Math.random() * 1.9;
+          const duracion = 4.3 + Math.random() * 2.1;
+          const inclinacion = (Math.random() - 0.5) * 18;
+          const deriva = (Math.random() - 0.5) * 100;
+
+          globo.className = "balloon";
+
+          globo.style.setProperty("--balloon-color", color);
+          globo.style.setProperty("--balloon-width", ancho + "px");
+          globo.style.setProperty("--balloon-height", alto + "px");
+          globo.style.setProperty("--spread", dispersion + "px");
+          globo.style.setProperty("--delay", retraso + "s");
+          globo.style.setProperty("--duration", duracion + "s");
+          globo.style.setProperty("--tilt", inclinacion + "deg");
+          globo.style.setProperty("--drift", deriva + "px");
+          globo.style.setProperty(
+            "--string-height",
+            (45 + Math.random() * 35) + "px"
+          );
+
+          document.body.appendChild(globo);
+
+          globo.addEventListener("animationend", () => {
+            globo.remove();
+          }, { once: true });
+        }
+      }
+
+      function mostrarInvitacion() {
+        const pantallaRegalo = document.getElementById("giftScreen");
+
+        if (pantallaRegalo) {
+          pantallaRegalo.classList.add("hide");
+        }
+      }
+
+      function iniciarAnimacion() {
+        if (animacionIniciada) return;
+        animacionIniciada = true;
+
+        crearDestellos();
+
+        // Los globos salen cuando comienza a abrirse la caja.
+        window.setTimeout(lanzarGlobos, 900);
+
+        // La invitación aparece mientras los globos siguen subiendo.
+        window.setTimeout(mostrarInvitacion, 3900);
+
+        // Respaldo para navegadores móviles.
+        window.setTimeout(mostrarInvitacion, 6000);
+      }
+
+      if (document.readyState === "loading") {
+        document.addEventListener(
+          "DOMContentLoaded",
+          iniciarAnimacion,
+          { once: true }
+        );
+      } else {
+        iniciarAnimacion();
+      }
+
+      window.addEventListener("load", iniciarAnimacion, { once: true });
+    })();
+  </script>
+
+</body>
+</html>
